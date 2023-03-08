@@ -31,6 +31,17 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 // Add renderer into HTML as a canvas element
 document.body.appendChild(renderer.domElement);
 
+/***************************************************** Resizer */
+
+// Make canvas responsive
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight; // update aspect ratio
+  camera.updateProjectionMatrix(); // apply changes
+
+  renderer.setSize(window.innerWidth, window.innerHeight); // update size
+  renderer.setPixelRatio(window.devicePixelRatio); // use to render at the native screen resolution
+});
+
 /***************************************************** Render */
 
 function render() {
