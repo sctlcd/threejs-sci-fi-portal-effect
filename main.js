@@ -48,16 +48,16 @@ const loader = new THREE.TextureLoader();
 // Set Texture loader
 const texture1 = loader.load("./images/textures/smoke-min.png");
 const texture2 = loader.load("./images/textures/colored-smoke-png-43277-min.png");
-const texture3 = loader.load("./images/textures/toppng.cpngwing.com (4).png");
-// pngwing.com (4).png
-// pngwing.com (1).png
-// toppng.com-smoke-texture-png-smoke-texture-2500x807.png
+const texture3 = loader.load("./images/textures/pngwing.com-4-min.png");
+// pngwing.com-4-min.png
+// pngwing.com-1-min.png
+// toppng.com-smoke-texture-png-smoke-texture-2500x807-min.png
 
 /***************************************************** Smoke 1 */
 
 const portalParticles1 = [];
 // Define a geometry - 800 unit plain square
-const portalGeometry1 = new THREE.PlaneBufferGeometry(800, 800);
+const portalGeometry1 = new THREE.PlaneBufferGeometry(350, 350);
 // Define a material and map it to the texture 1
 const portalMaterial1 = new THREE.MeshStandardMaterial({
   map: texture1,
@@ -71,8 +71,8 @@ for(let p = 880; p > 250; p--) {
   // Set each particle object position to create a conical spiral shape
   // conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
   particle.position.set(
-      0.5 * p * Math.cos((4 * p * Math.PI) / 180),
-      0.5 * p * Math.sin((4 * p * Math.PI) / 180),
+      0.7 * p * Math.cos((4 * p * Math.PI) / 180),
+      0.7 * p * Math.sin((4 * p * Math.PI) / 180),
       0.1 * p
   );
   // create a random rotation to create diversity
@@ -85,7 +85,7 @@ for(let p = 880; p > 250; p--) {
 /***************************************************** Smoke 2 */
 
 const portalParticles2 = [];
-const portalGeometry2 = new THREE.PlaneBufferGeometry(500, 500);
+const portalGeometry2 = new THREE.PlaneBufferGeometry (350, 350);
 const portalMaterial2 = new THREE.MeshStandardMaterial({
   map: texture2,
   transparent: true,
@@ -98,8 +98,8 @@ for(let p = 880; p > 250; p--) {
   // Set each particle object position to create a conical spiral shape
   // conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
   particle.position.set(
-      0.5 * p * Math.cos((4 * p * Math.PI) / 180),
-      0.5 * p * Math.sin((4 * p * Math.PI) / 180),
+      0.3 * p * Math.cos((4 * p * Math.PI) / 180),
+      0.3 * p * Math.sin((4 * p * Math.PI) / 180),
       0.1 * p
   );
   // create a random rotation to create diversity
@@ -112,7 +112,7 @@ for(let p = 880; p > 250; p--) {
 /***************************************************** Smoke 3 */
 
 const portalParticles3 = [];
-const portalGeometry3 = new THREE.PlaneBufferGeometry(500, 500);
+const portalGeometry3 = new THREE.PlaneBufferGeometry(350, 350);
 const portalMaterial3 = new THREE.MeshStandardMaterial({
   map: texture3,
   transparent: true,
@@ -125,14 +125,14 @@ for(let p = 880; p > 250; p--) {
   // Set each particle object position to create a conical spiral shape
   // conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
   particle.position.set(
-      0.5 * p * Math.cos((4 * p * Math.PI) / 180),
-      0.5 * p * Math.sin((4 * p * Math.PI) / 180),
+      0.48 * p * Math.cos((4 * p * Math.PI) / 180),
+      0.48 * p * Math.sin((4 * p * Math.PI) / 180),
       0.1 * p
   );
   // create a random rotation to create diversity
   particle.rotation.z = Math.random() *360;
   particle.material.opacity = 0.7;
-  portalParticles2.push(particle);  //keep the reference to the particle to animate it later
+  portalParticles3.push(particle);  //keep the reference to the particle to animate it later
   scene.add(particle);
 }
 
