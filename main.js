@@ -84,8 +84,8 @@ const loaderTexture1 = loader.load(
       // Set each particle object position to create a conical spiral shape
       // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
       particle.position.set(
-          0.7 * p * Math.cos((4 * p * Math.PI) / 180),
-          0.7 * p * Math.sin((4 * p * Math.PI) / 180),
+          0.8 * p * Math.cos((4 * p * Math.PI) / 180),
+          0.8 * p * Math.sin((4 * p * Math.PI) / 180),
           0.1 * p
       );
       // create a random rotation to create diversity
@@ -109,7 +109,7 @@ const loaderTexture1 = loader.load(
           25
       );
       particle.rotation.z = Math.random() * 360;
-      particle.material.opacity = 1;
+      particle.material.opacity = 0.9;
       portalParticles1.push(particle);
       scene.add(particle);
     }
@@ -144,13 +144,13 @@ const loaderTexture2 = loader.load(
       // Set each particle object position to create a conical spiral shape
       // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
       particle.position.set(
-          0.3 * p * Math.cos((4 * p * Math.PI) / 180),
-          0.3 * p * Math.sin((4 * p * Math.PI) / 180),
+          0.41 * p * Math.cos((4 * p * Math.PI) / 180),
+          0.41 * p * Math.sin((4 * p * Math.PI) / 180),
           0.1 * p
       );
       // create a random rotation to create diversity
       particle.rotation.z = Math.random() * 360;
-      particle.material.opacity = 1;
+      particle.material.opacity = 0.4;
       portalParticles2.push(particle);  //keep the reference to the particle to animate it later
       scene.add(particle);
     }
@@ -169,7 +169,7 @@ const loaderTexture2 = loader.load(
           25
       );
       particle.rotation.z = Math.random() * 360;
-      particle.material.opacity = 0.8;
+      particle.material.opacity = 0.2;
       portalParticles2.push(particle);
       scene.add(particle);
     }
@@ -177,6 +177,10 @@ const loaderTexture2 = loader.load(
 )
 
 /***************************************************** Smoke 3 */
+
+const clock3 = new THREE.Clock();
+const portalParticles3 = [];
+const smokeParticles3 = [];
 
 // Load a ressource
 const loaderTexture3 = loader.load(
@@ -200,15 +204,33 @@ const loaderTexture3 = loader.load(
       // Set each particle object position to create a conical spiral shape
       // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
       particle.position.set(
-          0.48 * p * Math.cos((4 * p * Math.PI) / 180),
-          0.48 * p * Math.sin((4 * p * Math.PI) / 180),
+          0.43 * p * Math.cos((4 * p * Math.PI) / 180),
+          0.43 * p * Math.sin((4 * p * Math.PI) / 180),
           0.1 * p
       );
       // create a random rotation to create diversity
       particle.rotation.z = Math.random() * 360;
       particle.material.opacity = 0.7;
-      const portalParticles3 = [];
       portalParticles3.push(particle);  //keep the reference to the particle to animate it later
+      scene.add(particle);
+    }
+
+    const smokeGeo3 = new THREE.PlaneBufferGeometry(1000, 1000);
+    const smokeMaterial3 = new THREE.MeshStandardMaterial({
+        map:texture3,
+        transparent: true
+    });
+
+    for(let p=0;p<80;p++) {
+      const particle = new THREE.Mesh(smokeGeo3,smokeMaterial3);
+      particle.position.set(
+          Math.random() * 1000 - 500,
+          Math.random() * 400 - 200,
+          25
+      );
+      particle.rotation.z = Math.random() * 360;
+      particle.material.opacity = 0.5;
+      portalParticles3.push(particle);
       scene.add(particle);
     }
   }
@@ -231,6 +253,15 @@ function render() {
   });
   smokeParticles2.forEach(p => {
       p.rotation.z -= delta2 * 0.1;
+  });
+
+  const delta3 = clock3.getDelta();
+  portalParticles3.forEach(p => {
+      p.rotation.z -= delta3 * 0.3;
+  });
+
+  smokeParticles3.forEach(p => {
+      p.rotation.z -= delta3 * 0.1;
   });
 
   if(Math.random() > 0.9) {
