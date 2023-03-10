@@ -123,81 +123,81 @@ const loaderTexture1 = loader.load(
   }
 )
 
-/***************************************************** Smoke 2 */
+// /***************************************************** Smoke 2 */
 
-// Load a ressource
-const loaderTexture2 = loader.load(
-  texture2, 
+// // Load a ressource
+// const loaderTexture2 = loader.load(
+//   texture2, 
 
-  // onLoad callback
-  function(texture2) {
-    // Define a geometry - 800 unit plain square
-    const portalGeometry2 = new THREE.PlaneBufferGeometry(350, 350);
-    // Create the material and map it to the texture when the texture is loaded
-    const portalMaterial2 = new THREE.MeshStandardMaterial({
-      // Use the texture for material creation
-      map: texture2,
-      transparent: true,
-    });
+//   // onLoad callback
+//   function(texture2) {
+//     // Define a geometry - 800 unit plain square
+//     const portalGeometry2 = new THREE.PlaneBufferGeometry(350, 350);
+//     // Create the material and map it to the texture when the texture is loaded
+//     const portalMaterial2 = new THREE.MeshStandardMaterial({
+//       // Use the texture for material creation
+//       map: texture2,
+//       transparent: true,
+//     });
 
-    // Create a loop to create a lot of smoke particules and place it along the spiral line
-    for(let p = 880; p > 250; p--) {
-      // Create a 3D particle object
-      const particle = new THREE.Mesh(portalGeometry2, portalMaterial2);
-      // Set each particle object position to create a conical spiral shape
-      // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
-      particle.position.set(
-          0.3 * p * Math.cos((4 * p * Math.PI) / 180),
-          0.3 * p * Math.sin((4 * p * Math.PI) / 180),
-          0.1 * p
-      );
-      // create a random rotation to create diversity
-      particle.rotation.z = Math.random() * 360;
-      particle.material.opacity = 1;
-      const portalParticles2 = [];
-      portalParticles2.push(particle);  //keep the reference to the particle to animate it later
-      scene.add(particle);
-    }
-  }
-)
+//     // Create a loop to create a lot of smoke particules and place it along the spiral line
+//     for(let p = 880; p > 250; p--) {
+//       // Create a 3D particle object
+//       const particle = new THREE.Mesh(portalGeometry2, portalMaterial2);
+//       // Set each particle object position to create a conical spiral shape
+//       // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
+//       particle.position.set(
+//           0.3 * p * Math.cos((4 * p * Math.PI) / 180),
+//           0.3 * p * Math.sin((4 * p * Math.PI) / 180),
+//           0.1 * p
+//       );
+//       // create a random rotation to create diversity
+//       particle.rotation.z = Math.random() * 360;
+//       particle.material.opacity = 1;
+//       const portalParticles2 = [];
+//       portalParticles2.push(particle);  //keep the reference to the particle to animate it later
+//       scene.add(particle);
+//     }
+//   }
+// )
 
-/***************************************************** Smoke 3 */
+// /***************************************************** Smoke 3 */
 
-// Load a ressource
-const loaderTexture3 = loader.load(
-  texture3, 
+// // Load a ressource
+// const loaderTexture3 = loader.load(
+//   texture3, 
 
-  // onLoad callback
-  function(texture3) {
-    // Define a geometry - 800 unit plain square
-    const portalGeometry3 = new THREE.PlaneBufferGeometry(350, 350);
-    // Create the material and map it to the texture when the texture is loaded
-    const portalMaterial3 = new THREE.MeshStandardMaterial({
-      // Use the texture for material creation
-      map: texture3,
-      transparent: true,
-    });
+//   // onLoad callback
+//   function(texture3) {
+//     // Define a geometry - 800 unit plain square
+//     const portalGeometry3 = new THREE.PlaneBufferGeometry(350, 350);
+//     // Create the material and map it to the texture when the texture is loaded
+//     const portalMaterial3 = new THREE.MeshStandardMaterial({
+//       // Use the texture for material creation
+//       map: texture3,
+//       transparent: true,
+//     });
 
-    // Create a loop to create a lot of smoke particules and place it along the spiral line
-    for(let p = 880; p > 250; p--) {
-      // Create a 3D particle object
-      const particle = new THREE.Mesh(portalGeometry3, portalMaterial3);
-      // Set each particle object position to create a conical spiral shape
-      // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
-      particle.position.set(
-          0.48 * p * Math.cos((4 * p * Math.PI) / 180),
-          0.48 * p * Math.sin((4 * p * Math.PI) / 180),
-          0.1 * p
-      );
-      // create a random rotation to create diversity
-      particle.rotation.z = Math.random() * 360;
-      particle.material.opacity = 0.7;
-      const portalParticles3 = [];
-      portalParticles3.push(particle);  //keep the reference to the particle to animate it later
-      scene.add(particle);
-    }
-  }
-)
+//     // Create a loop to create a lot of smoke particules and place it along the spiral line
+//     for(let p = 880; p > 250; p--) {
+//       // Create a 3D particle object
+//       const particle = new THREE.Mesh(portalGeometry3, portalMaterial3);
+//       // Set each particle object position to create a conical spiral shape
+//       // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
+//       particle.position.set(
+//           0.48 * p * Math.cos((4 * p * Math.PI) / 180),
+//           0.48 * p * Math.sin((4 * p * Math.PI) / 180),
+//           0.1 * p
+//       );
+//       // create a random rotation to create diversity
+//       particle.rotation.z = Math.random() * 360;
+//       particle.material.opacity = 0.7;
+//       const portalParticles3 = [];
+//       portalParticles3.push(particle);  //keep the reference to the particle to animate it later
+//       scene.add(particle);
+//     }
+//   }
+// )
 
 /***************************************************** Render */
 
