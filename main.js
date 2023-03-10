@@ -13,7 +13,7 @@ scene.add(directionalLight);
 
 /***************************************************** PortalLight */
 
-const portalLight = new THREE.PointLight(0x062d89, 30, 600, 1.7);
+const portalLight = new THREE.PointLight(0x062d80, 30, 600, 1.7);
 portalLight.position.set(0,0,250);
 scene.add(portalLight);
 
@@ -84,8 +84,8 @@ const loaderTexture1 = loader.load(
       // Set each particle object position to create a conical spiral shape
       // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
       particle.position.set(
-          0.8 * p * Math.cos((4 * p * Math.PI) / 180),
-          0.8 * p * Math.sin((4 * p * Math.PI) / 180),
+          0.62 * p * Math.cos((4 * p * Math.PI) / 180),
+          0.62 * p * Math.sin((4 * p * Math.PI) / 180),
           0.1 * p
       );
       // create a random rotation to create diversity
@@ -95,7 +95,7 @@ const loaderTexture1 = loader.load(
       scene.add(particle);
     }
 
-    const smokeGeo1 = new THREE.PlaneBufferGeometry(1100, 1300);
+    const smokeGeo1 = new THREE.PlaneBufferGeometry(1200, 1000);
     const smokeMaterial1 = new THREE.MeshStandardMaterial({
         map:texture1,
         transparent: true
@@ -109,7 +109,7 @@ const loaderTexture1 = loader.load(
           25
       );
       particle.rotation.z = Math.random() * 360;
-      particle.material.opacity = 0.9;
+      particle.material.opacity = 0.6;
       portalParticles1.push(particle);
       scene.add(particle);
     }
@@ -155,7 +155,7 @@ const loaderTexture2 = loader.load(
       scene.add(particle);
     }
 
-    const smokeGeo2 = new THREE.PlaneBufferGeometry(1200, 1000);
+    const smokeGeo2 = new THREE.PlaneBufferGeometry(1100, 800);
     const smokeMaterial2 = new THREE.MeshStandardMaterial({
         map:texture2,
         transparent: true
@@ -215,7 +215,7 @@ const loaderTexture3 = loader.load(
       scene.add(particle);
     }
 
-    const smokeGeo3 = new THREE.PlaneBufferGeometry(1000, 1000);
+    const smokeGeo3 = new THREE.PlaneBufferGeometry(900, 800);
     const smokeMaterial3 = new THREE.MeshStandardMaterial({
         map:texture3,
         transparent: true
@@ -229,7 +229,7 @@ const loaderTexture3 = loader.load(
           25
       );
       particle.rotation.z = Math.random() * 360;
-      particle.material.opacity = 0.5;
+      particle.material.opacity = 0.4;
       portalParticles3.push(particle);
       scene.add(particle);
     }
