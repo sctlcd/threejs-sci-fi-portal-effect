@@ -55,14 +55,10 @@ const texture2 = "./images/textures/colored-smoke-png-43277-min.png";
 const texture3 = "./images/textures/pngwing.com-4-min.png";
 // const textures = [texture1, texture2, texture3];
 
-const clock1 = new THREE.Clock();
-// const portalParticles1 = [];
-const smokeParticles = [];
-
-
 /***************************************************** Smoke 1 */
+const clock1 = new THREE.Clock();
 const portalParticles1 = [];
-
+const smokeParticles1 = [];
 
 // instantiate a loader
 const loader = new THREE.TextureLoader();
@@ -117,100 +113,128 @@ const loaderTexture1 = loader.load(
       portalParticles1.push(particle);
       scene.add(particle);
     }
-    // const clock = new THREE.Clock();
-    render();
-
   }
 )
 
-// /***************************************************** Smoke 2 */
+/***************************************************** Smoke 2 */
 
-// // Load a ressource
-// const loaderTexture2 = loader.load(
-//   texture2, 
+const clock2 = new THREE.Clock();
+const portalParticles2 = [];
+const smokeParticles2 = [];
 
-//   // onLoad callback
-//   function(texture2) {
-//     // Define a geometry - 800 unit plain square
-//     const portalGeometry2 = new THREE.PlaneBufferGeometry(350, 350);
-//     // Create the material and map it to the texture when the texture is loaded
-//     const portalMaterial2 = new THREE.MeshStandardMaterial({
-//       // Use the texture for material creation
-//       map: texture2,
-//       transparent: true,
-//     });
+// Load a ressource
+const loaderTexture2 = loader.load(
+  texture2, 
 
-//     // Create a loop to create a lot of smoke particules and place it along the spiral line
-//     for(let p = 880; p > 250; p--) {
-//       // Create a 3D particle object
-//       const particle = new THREE.Mesh(portalGeometry2, portalMaterial2);
-//       // Set each particle object position to create a conical spiral shape
-//       // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
-//       particle.position.set(
-//           0.3 * p * Math.cos((4 * p * Math.PI) / 180),
-//           0.3 * p * Math.sin((4 * p * Math.PI) / 180),
-//           0.1 * p
-//       );
-//       // create a random rotation to create diversity
-//       particle.rotation.z = Math.random() * 360;
-//       particle.material.opacity = 1;
-//       const portalParticles2 = [];
-//       portalParticles2.push(particle);  //keep the reference to the particle to animate it later
-//       scene.add(particle);
-//     }
-//   }
-// )
+  // onLoad callback
+  function(texture2) {
+    // Define a geometry - 800 unit plain square
+    const portalGeometry2 = new THREE.PlaneBufferGeometry(350, 350);
+    // Create the material and map it to the texture when the texture is loaded
+    const portalMaterial2 = new THREE.MeshStandardMaterial({
+      // Use the texture for material creation
+      map: texture2,
+      transparent: true,
+    });
 
-// /***************************************************** Smoke 3 */
+    // Create a loop to create a lot of smoke particules and place it along the spiral line
+    for(let p = 880; p > 250; p--) {
+      // Create a 3D particle object
+      const particle = new THREE.Mesh(portalGeometry2, portalMaterial2);
+      // Set each particle object position to create a conical spiral shape
+      // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
+      particle.position.set(
+          0.3 * p * Math.cos((4 * p * Math.PI) / 180),
+          0.3 * p * Math.sin((4 * p * Math.PI) / 180),
+          0.1 * p
+      );
+      // create a random rotation to create diversity
+      particle.rotation.z = Math.random() * 360;
+      particle.material.opacity = 1;
+      portalParticles2.push(particle);  //keep the reference to the particle to animate it later
+      scene.add(particle);
+    }
 
-// // Load a ressource
-// const loaderTexture3 = loader.load(
-//   texture3, 
+    const smokeGeo2 = new THREE.PlaneBufferGeometry(1200, 1000);
+    const smokeMaterial2 = new THREE.MeshStandardMaterial({
+        map:texture2,
+        transparent: true
+    });
 
-//   // onLoad callback
-//   function(texture3) {
-//     // Define a geometry - 800 unit plain square
-//     const portalGeometry3 = new THREE.PlaneBufferGeometry(350, 350);
-//     // Create the material and map it to the texture when the texture is loaded
-//     const portalMaterial3 = new THREE.MeshStandardMaterial({
-//       // Use the texture for material creation
-//       map: texture3,
-//       transparent: true,
-//     });
+    for(let p=0;p<80;p++) {
+      const particle = new THREE.Mesh(smokeGeo2,smokeMaterial2);
+      particle.position.set(
+          Math.random() * 1000 - 500,
+          Math.random() * 400 - 200,
+          25
+      );
+      particle.rotation.z = Math.random() * 360;
+      particle.material.opacity = 0.8;
+      portalParticles2.push(particle);
+      scene.add(particle);
+    }
+  }
+)
 
-//     // Create a loop to create a lot of smoke particules and place it along the spiral line
-//     for(let p = 880; p > 250; p--) {
-//       // Create a 3D particle object
-//       const particle = new THREE.Mesh(portalGeometry3, portalMaterial3);
-//       // Set each particle object position to create a conical spiral shape
-//       // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
-//       particle.position.set(
-//           0.48 * p * Math.cos((4 * p * Math.PI) / 180),
-//           0.48 * p * Math.sin((4 * p * Math.PI) / 180),
-//           0.1 * p
-//       );
-//       // create a random rotation to create diversity
-//       particle.rotation.z = Math.random() * 360;
-//       particle.material.opacity = 0.7;
-//       const portalParticles3 = [];
-//       portalParticles3.push(particle);  //keep the reference to the particle to animate it later
-//       scene.add(particle);
-//     }
-//   }
-// )
+/***************************************************** Smoke 3 */
+
+// Load a ressource
+const loaderTexture3 = loader.load(
+  texture3, 
+
+  // onLoad callback
+  function(texture3) {
+    // Define a geometry - 800 unit plain square
+    const portalGeometry3 = new THREE.PlaneBufferGeometry(350, 350);
+    // Create the material and map it to the texture when the texture is loaded
+    const portalMaterial3 = new THREE.MeshStandardMaterial({
+      // Use the texture for material creation
+      map: texture3,
+      transparent: true,
+    });
+
+    // Create a loop to create a lot of smoke particules and place it along the spiral line
+    for(let p = 880; p > 250; p--) {
+      // Create a 3D particle object
+      const particle = new THREE.Mesh(portalGeometry3, portalMaterial3);
+      // Set each particle object position to create a conical spiral shape
+      // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
+      particle.position.set(
+          0.48 * p * Math.cos((4 * p * Math.PI) / 180),
+          0.48 * p * Math.sin((4 * p * Math.PI) / 180),
+          0.1 * p
+      );
+      // create a random rotation to create diversity
+      particle.rotation.z = Math.random() * 360;
+      particle.material.opacity = 0.7;
+      const portalParticles3 = [];
+      portalParticles3.push(particle);  //keep the reference to the particle to animate it later
+      scene.add(particle);
+    }
+  }
+)
 
 /***************************************************** Render */
 
 function render() {
-  const delta = clock1.getDelta();
+  const delta1 = clock1.getDelta();
   portalParticles1.forEach(p => {
-      p.rotation.z -= delta *0.5;
+      p.rotation.z -= delta1 * 0.5;
   });
-  smokeParticles.forEach(p => {
-      p.rotation.z -= delta *0.2;
+  smokeParticles1.forEach(p => {
+      p.rotation.z -= delta1 * 0.2;
   });
+
+  const delta2 = clock2.getDelta();
+  portalParticles2.forEach(p => {
+      p.rotation.z -= delta2 * 0.3;
+  });
+  smokeParticles2.forEach(p => {
+      p.rotation.z -= delta2 * 0.1;
+  });
+
   if(Math.random() > 0.9) {
-      portalLight.power =350 + Math.random()*500;
+      portalLight.power = 350 + Math.random() * 500;
   }
 
   // rerender every time the page refreshes (pause when on another tab)
