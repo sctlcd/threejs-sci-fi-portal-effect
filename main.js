@@ -12,13 +12,15 @@ const camera = new THREE.PerspectiveCamera(
 );
 const renderer = new THREE.WebGLRenderer();
 
-// clock object to keep track of the time
+// clock objects to keep track of the time
 const clock1 = new THREE.Clock();
 const clock2 = new THREE.Clock();
 const clock3 = new THREE.Clock();
+// smokeParticles arrays
 const smokeParticles1 = [];
 const smokeParticles2 = [];
 const smokeParticles3 = [];
+// portalParticles arrays
 const portalParticles1 = [];
 const portalParticles2 = [];
 const portalParticles3 = [];
@@ -96,9 +98,9 @@ function particleSetup() {
 
       // Create a loop to create a lot of portal particules and place it along the spiral line
       for(let p = 880; p > 250; p--) {
-        // Create a 3D particle object
+        // Create a 3D portal particle object
         const portalParticle1 = new THREE.Mesh(portalGeometry1, portalMaterial1);
-        // Set each particle object position to create a conical spiral shape
+        // Set each portal particle object position to create a conical spiral shape
         // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
         portalParticle1.position.set(
             0.62 * p * Math.cos((4 * p * Math.PI) / 180),
@@ -114,18 +116,22 @@ function particleSetup() {
 
       // Define a geometry
       const smokeGeometry1 = new THREE.PlaneBufferGeometry(1000, 1800);
+      // Create the material and map it to the texture
       const smokeMaterial1 = new THREE.MeshStandardMaterial({
           map:texture1,
           transparent: true
       });
 
-      for(let p=0;p<40;p++) {
+      // Create a loop to create a lot of smoke particules
+      for(let p = 0; p < 40; p++) {
+        // Create a 3D smoke particle object
         const smokeParticle1 = new THREE.Mesh(smokeGeometry1,smokeMaterial1);
         smokeParticle1.position.set(
             Math.random() * 1000 - 500,
             Math.random() * 400 - 200,
             25
         );
+        // create a random rotation to create diversity
         smokeParticle1.rotation.z = Math.random() * 360;
         smokeParticle1.material.opacity = 0.2;
         portalParticles1.push(smokeParticle1);
@@ -153,9 +159,9 @@ function particleSetup() {
 
       // Create a loop to create a lot of smoke particules and place it along the spiral line
       for(let p = 880; p > 250; p--) {
-        // Create a 3D particle object
+        // Create a 3D portal particle object
         const portalParticle2 = new THREE.Mesh(portalGeometry2, portalMaterial2);
-        // Set each particle object position to create a conical spiral shape
+        // Set each portal particle object position to create a conical spiral shape
         // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
         portalParticle2.position.set(
             0.41 * p * Math.cos((4 * p * Math.PI) / 180),
@@ -174,14 +180,17 @@ function particleSetup() {
           map:texture2,
           transparent: true
       });
-
-      for(let p=0;p<80;p++) {
+      
+      // Create a loop to create a lot of smoke particules
+      for(let p = 0; p <80; p++) {
+        // Create a 3D smoke particle object
         const smokeParticle2 = new THREE.Mesh(smokeGeometry2,smokeMaterial2);
         smokeParticle2.position.set(
             Math.random() * 1000 - 500,
             Math.random() * 400 - 200,
             25
         );
+        // create a random rotation to create diversity
         smokeParticle2.rotation.z = Math.random() * 360;
         smokeParticle2.material.opacity = 0.1;
         portalParticles2.push(smokeParticle2);
@@ -209,9 +218,9 @@ function particleSetup() {
 
       // Create a loop to create a lot of smoke particules and place it along the spiral line
       for(let p = 880; p > 250; p--) {
-        // Create a 3D particle object
+        // Create a 3D portal particle object
         const portalParticle3 = new THREE.Mesh(portalGeometry3, portalMaterial3);
-        // Set each particle object position to create a conical spiral shape
+        // Set each portal particle object position to create a conical spiral shape
         // Conical spiral equation x(t) = radius * cos(t), y(t) = radius * sin(t), z(t) = a * t
         portalParticle3.position.set(
             0.43 * p * Math.cos((4 * p * Math.PI) / 180),
@@ -231,13 +240,16 @@ function particleSetup() {
           transparent: true
       });
 
-      for(let p=0;p<80;p++) {
+      // Create a loop to create a lot of smoke particules
+      for(let p = 0; p < 80; p++) {
+        // Create a 3D smoke particle object
         const smokeParticle3 = new THREE.Mesh(smokeGeometry3,smokeMaterial3);
         smokeParticle3.position.set(
             Math.random() * 1000 - 500,
             Math.random() * 400 - 200,
             25
         );
+        // create a random rotation to create diversity
         smokeParticle3.rotation.z = Math.random() * 360;
         smokeParticle3.material.opacity = 0.3;
         portalParticles3.push(smokeParticle3);
@@ -253,7 +265,11 @@ function particleSetup() {
 
 function render() {
 
+  // get the time passed between the frame from the clock object
   const delta1 = clock1.getDelta();
+  const delta2 = clock2.getDelta();
+  const delta3 = clock3.getDelta();
+
   portalParticles1.forEach(p => {
       p.rotation.z -= delta1 * 0.5;
   });
@@ -261,7 +277,6 @@ function render() {
       p.rotation.z -= delta1 * 0.2;
   });
 
-  const delta2 = clock2.getDelta();
   portalParticles2.forEach(p => {
       p.rotation.z -= delta2 * 0.3;
   });
@@ -269,7 +284,6 @@ function render() {
       p.rotation.z -= delta2 * 0.1;
   });
 
-  const delta3 = clock3.getDelta();
   portalParticles3.forEach(p => {
       p.rotation.z -= delta3 * 0.3;
   });
@@ -281,10 +295,12 @@ function render() {
       portalLight.power = 350 + Math.random() * 500;
   }
 
+  // render the scene
+  renderer.render(scene, camera);
+
+  // recursive function to animate the scene and each execution represent one frame
   // rerender every time the page refreshes (pause when on another tab)
   requestAnimationFrame(render);
-
-  renderer.render(scene, camera);
 }
 
 initScene();
