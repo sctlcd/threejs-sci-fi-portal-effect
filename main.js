@@ -95,7 +95,7 @@ const loaderTexture1 = loader.load(
       scene.add(particle);
     }
 
-    const smokeGeo1 = new THREE.PlaneBufferGeometry(1200, 1000);
+    const smokeGeo1 = new THREE.PlaneBufferGeometry(1000, 1800);
     const smokeMaterial1 = new THREE.MeshStandardMaterial({
         map:texture1,
         transparent: true
@@ -109,7 +109,7 @@ const loaderTexture1 = loader.load(
           25
       );
       particle.rotation.z = Math.random() * 360;
-      particle.material.opacity = 0.6;
+      particle.material.opacity = 0.2;
       portalParticles1.push(particle);
       scene.add(particle);
     }
@@ -155,7 +155,7 @@ const loaderTexture2 = loader.load(
       scene.add(particle);
     }
 
-    const smokeGeo2 = new THREE.PlaneBufferGeometry(1100, 800);
+    const smokeGeo2 = new THREE.PlaneBufferGeometry(1000, 1800);
     const smokeMaterial2 = new THREE.MeshStandardMaterial({
         map:texture2,
         transparent: true
@@ -169,7 +169,7 @@ const loaderTexture2 = loader.load(
           25
       );
       particle.rotation.z = Math.random() * 360;
-      particle.material.opacity = 0.2;
+      particle.material.opacity = 0.1;
       portalParticles2.push(particle);
       scene.add(particle);
     }
@@ -215,7 +215,7 @@ const loaderTexture3 = loader.load(
       scene.add(particle);
     }
 
-    const smokeGeo3 = new THREE.PlaneBufferGeometry(900, 800);
+    const smokeGeo3 = new THREE.PlaneBufferGeometry(1000, 800);
     const smokeMaterial3 = new THREE.MeshStandardMaterial({
         map:texture3,
         transparent: true
@@ -229,7 +229,7 @@ const loaderTexture3 = loader.load(
           25
       );
       particle.rotation.z = Math.random() * 360;
-      particle.material.opacity = 0.4;
+      particle.material.opacity = 0.3;
       portalParticles3.push(particle);
       scene.add(particle);
     }
